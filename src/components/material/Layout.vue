@@ -1,0 +1,13 @@
+<template>
+  <v-container
+    fluid
+    grid-list-xl
+  >
+    <v-layout 
+      row 
+      wrap
+    >
+      <slot/>
+    </v-layout>
+  </v-container>
+</template>
