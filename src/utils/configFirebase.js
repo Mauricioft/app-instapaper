@@ -4,12 +4,12 @@ import 'firebase/messaging'
 
 // Initialize Firebase
 const config = {
-  apiKey: "AIzaSyASpUxA8ZkFJtseC7RizYhuWXupmMfRFOc",
-  authDomain: "instapaper-72255.firebaseapp.com",
-  databaseURL: "https://instapaper-72255.firebaseio.com",
-  projectId: "instapaper-72255",
-  storageBucket: "instapaper-72255.appspot.com",
-  messagingSenderId: "900085870801"
+  apiKey: process.env.VUE_APP_FIREBASE_KEY,
+  authDomain: process.env.VUE_APP_FIREBASE_DOMAIN,
+  databaseURL: process.env.VUE_APP_FIREBASE_URL,
+  projectId: process.env.VUE_APP_FIREBASE_ID,
+  storageBucket: process.env.VUE_APP_FIREBASE_BUCKET,
+  messagingSenderId: process.env.VUE_APP_FIREBASE_SENDER_ID
 }
 
 const settings = {}
