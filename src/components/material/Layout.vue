@@ -3,8 +3,8 @@
     fluid
     grid-list-xl
   >
-    <v-layout 
-      row 
+    <v-layout
+      row
       wrap
     >
       <slot/>

@@ -1,19 +1,31 @@
 <template>
   <pm-layout>
-    <v-flex 
-      v-for="(dog, key) in dogs" 
-      :key="dog.id" 
-      xs12 
-      md6 
+    <v-btn
+      router
+      to="post"
+      color="red"
+      dark
+      fixed
+      bottom
+      right
+      fab
+    >
+      <v-icon>add</v-icon>
+    </v-btn>
+    <v-flex
+      v-for="(dog, key) in dogs"
+      :key="dog.id"
+      xs12
+      md6
       xl3 
       pa-2
     >
-      <v-card 
+      <v-card
         @click="$router.push({
-          name: 'details', 
-          params: { 
-            id: dog.id, 
-            dog: dogs[key] 
+          name: 'details',
+          params: {
+            id: dog.id,
+            dog: dogs[key]
           }
         })"
       >
@@ -22,8 +34,8 @@
           :src="dog.url"
           aspect-ratio="2.75"
         />
-        <v-card-title 
-          primary-title 
+        <v-card-title
+          primary-title
           style="padding-top:13px"
         >
           <div>
@@ -38,44 +50,33 @@
 
 <script>
   import PmLayout from '../components/material/Layout'
+  import {
+    dogList
+  } from '../mixins/postDogMixin'
 
   export default {
     components: {
       PmLayout
     },
     data: () => ({
-      dogs:[
-        {
-          'id': 0,
-          'url': 'https://images.dog.ceo/breeds/germanshepherd/n02106662_13904.jpg',
-          'comment': 'Dog resting',
-          'info': 'Posted by Eder on Friday'
-        },
-        {
-          'id': 1,
-          'url': 'https://images.dog.ceo/breeds/setter-gordon/n02101006_4491.jpg',
-          'comment': 'Tongue dog',
-          'info': 'Posted by Naye on Tuesday'
-        },
-        {
-          'id': 2,
-          'url': 'https://images.dog.ceo/breeds/terrier-australian/n02096294_1429.jpg',
-          'comment': 'Terrier Australian dog',
-          'info': 'Posted by Eder on Monday'
-        },
-        {
-          'id': 3,
-          'url': 'https://images.dog.ceo/breeds/mexicanhairless/n02113978_1595.jpg',
-          'comment': 'Mexico Xoloitzcuintle',
-          'info': 'Posted by Naye on Monday'
-        },
-        {
-          'id': 4,
-          'url': 'https://images.dog.ceo/breeds/dachshund/dog-495133_640.jpg',
-          'comment': 'Sad dog',
-          'info': 'Posted by Eder on Monday'
-        }
-      ]
-    })
+      dogs: []
+    }),
+    mounted() {
+      this.list()
+    },
+    methods: {
+      list(){
+        /*
+        console.log(dogList)
+        debugger
+        */
+        dogList().then((data) => {
+          console.log('Home@list', data)
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+      }
+    }
   }
 </script>

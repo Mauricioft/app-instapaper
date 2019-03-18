@@ -1,7 +1,12 @@
 <template>
-  <v-toolbar app>
+  <v-toolbar
+    dark
+    app
+    fixed
+    color="blue darken-3"
+  >
     <v-btn
-      icon v-if="$route.name !== 'home'"
+      icon v-if="$route.name !== 'Home'"
       @click="$router.go(-1)"
     >
       <v-icon>arrow_back</v-icon>
