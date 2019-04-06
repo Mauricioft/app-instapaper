@@ -4,7 +4,7 @@ import axios from 'axios'
 const HTTP = axios.create({
   withCredentials: false,
   timeout: 50000,
-  baseURL: 'https://dog.ceo/api/'
+  baseURL: `${process.env.VUE_APP_API_URL}/`
 })
 
 HTTP.interceptors.request.use((config) => {

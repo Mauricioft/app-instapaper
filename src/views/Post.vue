@@ -55,10 +55,16 @@
 
 <script>
   import PmLayout from '../components/material/Layout'
-  import postDog from '../mixins/postDogMixin'
+  import { mapActions } from 'vuex'
   import DogSrvc from '../services/dogSrvc'
 
   export default {
+    props: {
+      pictureUrl: {
+        type: String,
+        default: ''
+      }
+    },
     components: {
       PmLayout
     },
@@ -66,31 +72,39 @@
       dogUrl: null,
       title: '',
       author: '',
-      loading: true,
+      loading: true
     }),
     mounted(){
-      this.init()
+      if(this.pictureUrl != ''){
+        this.dogUrl = this.pictureUrl
+        this.loading = false
+      }else{
+        this.init()
+      }
     },
     methods: {
+      ...mapActions(['setDogs']),
       async init(){
         try{
-          let suma = 1+1
-          alert(suma)
           const response = await DogSrvc.list()
           if(response.status){
             this.dogUrl = response.message
             this.loading = false
           }
         }catch(error){
-          this.loading = false;
+          this.loading = false
           console.log(error)
         }
       },
       add(){
-        console.log('add', this.postDog)
-        // postDog.add(this.dogUrl, this.title, this.author)
+        let payload = {
+          url: this.dogUrl,
+          comment: this.title,
+          author: this.author
+        }
+        this.setDogs(payload)
       }
-    },
+    }
   }
 </script>
 

@@ -11,7 +11,9 @@ import {
 
 // import router from './router'
 import router from './router/index'
-import store from './store'
+import {
+  store
+} from './store/'
 import './registerServiceWorker'
 
 Vue.config.productionTip = false

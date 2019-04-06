@@ -13,13 +13,11 @@ import Router from 'vue-router'
 // Routes
 import paths from './paths'
 
-const route = (path, view, name, props = false) => ({
-  name: name || view,
+const route = (path, url, name, props = false) => ({
+  name: name,
   path,
   props,
-  component: (resovle) => import(
-    `@/views/${view}.vue`
-  ).then(resovle)
+  component: (resovle) => import(`@/${url}.vue`).then(resovle)
 })
 
 Vue.use(Router)
@@ -31,7 +29,7 @@ const router = new Router({
   routes: paths.map((item) => 
       route(
         item.path, 
-        item.view, 
+        item.url, 
         item.name,
         item.props
       )

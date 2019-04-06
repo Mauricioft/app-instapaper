@@ -6,20 +6,26 @@
 export default [
   {
     path: '/',
-    // Relative to /src/views
-    view: 'Home',
-    props: false,
+    url: 'views/Home',
+    name: 'home',
+    props: false
   },
   {
     path: '/details',
+    url: 'views/Details',
     name: 'details',
-    view: 'Details',
-    props: true,
+    props: true
   },
   {
     path: '/post',
+    url: 'views/Post',
     name: 'post',
-    view: 'Post',
-    props: false,
+    props: true
   },
+  {
+    path: '/camera',
+    url: 'components/widgets/Camera',
+    name: 'camera',
+    props: true
+  }
 ]

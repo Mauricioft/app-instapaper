@@ -25,7 +25,7 @@
           name: 'details',
           params: {
             id: dog.id,
-            dog: dogs[key]
+            dogProp: dogs[key]
           }
         })"
       >
@@ -49,34 +49,21 @@
 </template>
 
 <script>
+  import { mapState, mapActions } from 'vuex'
   import PmLayout from '../components/material/Layout'
-  import {
-    dogList
-  } from '../mixins/postDogMixin'
 
   export default {
     components: {
       PmLayout
     },
-    data: () => ({
-      dogs: []
-    }),
-    mounted() {
-      this.list()
+    beforeMount() {
+      this.getDogs()
+    },
+    computed: {
+      ...mapState(['dogs'])
     },
     methods: {
-      list(){
-        /*
-        console.log(dogList)
-        debugger
-        */
-        dogList().then((data) => {
-          console.log('Home@list', data)
-        })
-        .catch((error) => {
-          console.log(error);
-        })
-      }
+      ...mapActions(['getDogs']),
     }
   }
 </script>
